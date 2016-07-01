@@ -45,7 +45,7 @@ create /config/demoapp/first/second tree
 quit
 ```
 ## deploy
-     $ java -jar stone-micro-1.0-SNAPSHOT.jar
+     $ java -jar stone-gateway.jar
 
 
 
