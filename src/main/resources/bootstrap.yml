@@ -1,0 +1,23 @@
+logging:
+    level: DEBUG
+spring:
+  application:
+    name: message
+  cloud:
+    zookeeper:
+        enabled: true
+        connectString: 192.168.103.21:2181
+    config:
+      # TODO: refactor spring-cloud-config to use refresh, etc.. with out config client
+      enabled: false
+
+
+#sms:
+#  account: stlc_sms
+#  pswd: Txb123456
+#  url: http://222.73.117.158/msg/HttpBatchSendSM
+
+sms:
+  account: 8SDK-EMY-6699-RGWUM
+  pswd: 406338
+  url: http://hprpt2.eucp.b2m.cn:8080/sdkproxy/sendsms.action

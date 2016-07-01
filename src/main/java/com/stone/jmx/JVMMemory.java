@@ -1,0 +1,53 @@
+package com.stone.jmx;
+
+/**
+ * JVMMemory
+ *
+ * @author Young
+ * @date 2016/2/17 0017
+ */
+
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryMXBean;
+
+public class JVMMemory {
+
+    private final MemoryMXBean memoryMXBean;
+
+    public JVMMemory() {
+        memoryMXBean = ManagementFactory.getMemoryMXBean();
+
+    }
+
+    public long getHeapMemoryUsed() {
+        return memoryMXBean.getHeapMemoryUsage().getUsed();
+    }
+
+    public long getHeapMemoryMax() {
+        return memoryMXBean.getHeapMemoryUsage().getMax();
+    }
+
+    public long getHeapMemoryCommitted() {
+        return memoryMXBean.getHeapMemoryUsage().getCommitted();
+    }
+
+    public long getHeapMemoryInit() {
+        return memoryMXBean.getHeapMemoryUsage().getInit();
+    }
+
+    public double getHeapMemoryUsedInMBytes() {
+        return ((double) getHeapMemoryUsed() / (1024 * 1024));
+    }
+
+    public double getHeapMemoryMaxInMBytes() {
+        return ((double) getHeapMemoryMax() / (1024 * 1024));
+    }
+
+    public double getHeapMemoryCommittedInMBytes() {
+        return ((double) getHeapMemoryCommitted() / (1024 * 1024));
+    }
+
+    public double getHeapMemoryInitInMBytes() {
+        return ((double) getHeapMemoryInit() / (1024 * 1024));
+    }
+}

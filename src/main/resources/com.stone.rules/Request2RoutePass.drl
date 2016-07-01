@@ -1,0 +1,13 @@
+package com.stone.rules
+
+import com.stone.rules.facts.*;
+
+import com.stone.rules.facts.request.*;
+import com.stone.rules.facts.routing.*;
+
+rule "default" when
+     request:Request2Route( method.equals("get") )
+then
+    insert( new RoutingInfo( "127.0.0.1",18081,"/sms") );
+end
+
