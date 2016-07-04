@@ -27,10 +27,6 @@ public class MicroServerVerticle extends AbstractVerticle {
 
     @Override
     public void start() {
-
-
-
-
         Router router = Router.router(vertx);
         router.route().handler(BodyHandler.create());
         router.route("/sms").handler(
@@ -44,15 +40,28 @@ public class MicroServerVerticle extends AbstractVerticle {
                     });
                 });
 
-        router.route("/email").handler(
+        router.route("/").handler(
                 req -> {
-                    LOGGER.info("Received a http request,enter into email server");
+                    LOGGER.info("Received a http request");
                     vertx.eventBus().send("email", req.getBodyAsString(), ar -> {
                         if (ar.succeeded()) {
                             req.response().end(JSON.toJSONString(ar.result().body()));
                         }
                     });
                 });
+
+
+        router.route("/register").handler(
+                req -> {
+            LOGGER.info("Received a http request");
+            vertx.eventBus().send("email", req.getBodyAsString(), ar -> {
+                if (ar.succeeded()) {
+                    req.response().end(JSON.toJSONString(ar.result().body()));
+                }
+            });
+        });
+
+
 
         vertx.createHttpServer().requestHandler(router::accept).listen(18081);
         LOGGER.info("Started HttpServer(port=18081).");
